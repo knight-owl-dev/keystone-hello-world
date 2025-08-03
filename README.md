@@ -72,16 +72,23 @@ make help
 │   └── sync.json       # Sync metadata
 ├── .licenses/          # License documents (Keystone, Pandoc)
 ├── appendix/           # Appendices (e.g., appendix-a.md)
+│   └── appendix-a.md
 ├── artifacts/          # Output folder for built PDFs and EPUBs
 ├── assets/             # Images and cover art
 ├── chapters/           # Main content chapters (e.g., introduction.md, chapter-1.md)
+│   ├── introduction.md
+│   ├── chapter-1.md
+│   └── chapter-2.md
 ├── drafts/             # Work-in-progress material
+│   └── chapter-3.md
 ├── research/           # Notes, references, citations
+│   └── about-research.md
 ├── .dockerignore       # Docker ignore file
 ├── .editorconfig       # Editor defaults
 ├── .env                # Project configuration
 ├── .gitattributes      # Git attributes
 ├── .gitignore          # Git ignore file
+├── LICENSE.md          # License for this project
 ├── Makefile            # Build commands
 ├── NOTICE.md           # Project notices and third-party tool acknowledgments
 ├── pandoc.yaml         # Pandoc metadata (title, author, etc.)
