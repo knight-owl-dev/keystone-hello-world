@@ -80,6 +80,7 @@ make help
 │   ├── chapter-1.md
 │   └── chapter-2.md
 ├── drafts/             # Work-in-progress material
+│   └── chapter-3.md
 ├── research/           # Notes, references, citations
 ├── .dockerignore       # Docker ignore file
 ├── .editorconfig       # Editor defaults
