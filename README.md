@@ -82,6 +82,7 @@ make help
 ├── .env                # Project configuration
 ├── .gitattributes      # Git attributes
 ├── .gitignore          # Git ignore file
+├── LICENSE.md          # License for this project
 ├── Makefile            # Build commands
 ├── NOTICE.md           # Project notices and third-party tool acknowledgments
 ├── pandoc.yaml         # Pandoc metadata (title, author, etc.)
