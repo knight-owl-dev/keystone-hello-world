@@ -20,5 +20,5 @@ Additional terms:
 - Use of this sample project is permitted solely for creating, modifying, and publishing your own documents and books.
 - You may not use this sample project or its derivatives as part of a commercial SaaS product, build service, or template offering without express written permission from Knight Owl LLC.
 
-License summary: [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+License summary: [https://creativecommons.org/licenses/by-nc-sa/4.0/](https://creativecommons.org/licenses/by-nc-sa/4.0/)  
 Full legal code: [https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
