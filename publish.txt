@@ -12,9 +12,9 @@
 # - DO NOT include any files from other directories.
 # - Contents of assets/ are automatically included if referenced inside
 #   your Markdown files.
-#
-# Example:
-# chapters/introduction.md
-# chapters/chapter-1.md
-# appendix/appendix-a.md
 # --------------------------------------------------------------------------------
+
+chapters/introduction.md
+chapters/chapter-1.md
+chapters/chapter-2.md
+appendix/appendix-a.md

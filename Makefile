@@ -1,4 +1,4 @@
-.PHONY: import publish all clean sample help
+.PHONY: import publish all clean help
 
 # Load environment variables (only for Makefile)
 include .env
@@ -61,20 +61,6 @@ clean:
 	@rm -fv $(shell find ./artifacts -type f ! -name '.gitkeep' ! -name '.DS_Store')
 	@echo ""
 
-# Install sample content
-sample:
-	@if grep -Ev '^\s*#|^\s*$$' publish.txt | grep -q .; then \
-		echo "❌ Cannot install sample content: publish.txt is not empty."; \
-		echo "   Please clear it manually or move your content before running 'make sample'."; \
-		exit 1; \
-	fi
-	@echo "📦 Installing Keystone sample content..."
-	@$(DC) run --rm keystone ./.pandoc/export-sample.sh
-	@cp -rv artifacts/sample/. ./
-	@rm -rf artifacts/sample/
-	@echo "✅ Sample content installed. You can now run 'make all' to build your first book."
-	@echo ""
-
 # Show help message
 help:
 	@echo ""
@@ -83,6 +69,5 @@ help:
 	@echo "  make import artifact=input-file.ext                Import a document (DOCX, ODT, RTF) from ./artifacts"
 	@echo "  make all                                           Build all supported formats (PDF, EPUB, DOCX)"
 	@echo "  make clean                                         Delete generated artifacts from ./artifacts"
-	@echo "  make sample                                        Install sample content (chapters and appendix)"
 	@echo "  make help                                          Show this message"
 	@echo ""
