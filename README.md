@@ -72,9 +72,13 @@ make help
 │   └── sync.json       # Sync metadata
 ├── .licenses/          # License documents (Keystone, Pandoc)
 ├── appendix/           # Appendices (e.g., appendix-a.md)
+│   └── appendix-a.md
 ├── artifacts/          # Output folder for built PDFs and EPUBs
 ├── assets/             # Images and cover art
 ├── chapters/           # Main content chapters (e.g., introduction.md, chapter-1.md)
+│   ├── introduction.md
+│   ├── chapter-1.md
+│   └── chapter-2.md
 ├── drafts/             # Work-in-progress material
 ├── research/           # Notes, references, citations
 ├── .dockerignore       # Docker ignore file
