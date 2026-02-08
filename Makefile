@@ -1,13 +1,13 @@
 .PHONY: import publish all clean help
 
-# Load environment variables (only for Makefile)
-include .env
+# Load project configuration (only for Makefile)
+include project.conf
 
 # Path to your Compose file and environment file
 COMPOSE_FILE = .docker/docker-compose.yaml
 
 # Base Docker Compose command
-DC = docker compose -p $(KEYSTONE_DOCKER_COMPOSE_PROJECT) --file $(COMPOSE_FILE) --env-file .env
+DC = docker compose -p $(KEYSTONE_DOCKER_COMPOSE_PROJECT) --file $(COMPOSE_FILE) --env-file project.conf
 
 # Base import command
 IMPORT = $(DC) run --rm keystone ./.pandoc/import.sh

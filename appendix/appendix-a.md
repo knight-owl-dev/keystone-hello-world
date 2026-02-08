@@ -25,7 +25,7 @@ Keystone is designed for clean, reproducible authoring without touching internal
 
 - Add a new chapter (e.g., `chapter-3.md`) and include it in `publish.txt`
 - Drop a new image in `assets/` and reference it in your content
-- Customize title, author, font, paper size in the `.env` file
+- Customize title, author, font, paper size in `pandoc.yaml`
 - Explore advanced features like `::: dialog` or `::: latex-only` blocks to stylize content using custom divs
 
 > For power users: Advanced settings (like Lua filters or LaTeX macros) live in `.pandoc/`. But casual users won’t need to touch them.

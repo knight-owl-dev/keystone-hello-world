@@ -85,7 +85,7 @@ make help
 │   └── about-research.md
 ├── .dockerignore       # Docker ignore file
 ├── .editorconfig       # Editor defaults
-├── .env                # Project configuration
+├── project.conf        # Project configuration
 ├── .gitattributes      # Git attributes
 ├── .gitignore          # Git ignore file
 ├── LICENSE.md          # License for this project

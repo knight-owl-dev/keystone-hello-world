@@ -22,5 +22,5 @@ artifacts/
 # OS-specific clutter
 .DS_Store
 
-# Sensitive or unused config
-.env
+# Operational config (not needed inside the container)
+project.conf

@@ -77,4 +77,73 @@ keywords:
   - hello-world
   - keystone
   - book
+
+# -- PDF layout (LaTeX) -------------------------------------------------------
+# These map to Pandoc's LaTeX template variables and are passed directly to
+# the PDF engine. Pandoc reads them natively from this file — no scripts or
+# environment variables needed.
+#
+# Reference: https://pandoc.org/MANUAL.html#variables-for-latex
+
+# Paper size for LaTeX (PDF only)
+#
+# This corresponds to LaTeX's `papersize` option (no "paper" suffix).
+#
+# Common values:
+# - letter     (8.5" x 11", US)
+# - a4         (210mm x 297mm, international standard)
+# - a5         (148mm x 210mm, compact book size)
+# - b5         (176mm x 250mm, used in publishing)
+#
+papersize: b5
+
+# Page geometry (margins) for LaTeX
+#
+# Use LaTeX geometry syntax: margin=1in or top=20mm, bottom=25mm, etc.
+#
+# Reference: https://ctan.org/pkg/geometry
+#
+# Common values:
+# - margin=1in                                    (default, good for general documents)
+# - top=20mm, bottom=25mm, left=20mm, right=20mm  (compact, use with a5)
+# - inner=30mm, outer=20mm, top=25mm, bottom=25mm (wider inner margin for binding)
+# - margin=10mm                                   (minimal margin — may clip when printed)
+#
+geometry: inner=30mm, outer=20mm, top=25mm, bottom=25mm
+
+# Base font size for LaTeX document
+#
+# Accepted values: 10pt, 11pt, 12pt
+# Default: 10pt
+#
+fontsize: 11pt
+
+# Font family for the main body text (requires XeLaTeX engine)
+#
+# Mapped to \setmainfont under the hood. Libertine is the Keystone default.
+# Comment out to fall back to the standard LaTeX font (Computer Modern).
+#
+# Reference: https://pandoc.org/MANUAL.html#fonts
+#
+# Supported values (confirmed):
+#   - libertine    (maps to Libertinus Serif, supports localization)
+#   - palatino     (maps to Palatino)
+#   - times        (maps to Times New Roman)
+#   - helvet       (maps to Helvetica)
+#
+fontfamily: libertine
+
+# -- EPUB options --------------------------------------------------------------
+
+# The cover image for your book (EPUB only)
+#
+# Path to the cover image file relative to the project root.
+# It should be a valid image format (e.g., PNG, JPG).
+#
+# This maps to Pandoc's `cover-image` metadata field and is used only
+# when building EPUB output.
+#
+# Example: ./assets/cover.jpg
+#
+cover-image: ./assets/keystone-cover.jpg
 ...

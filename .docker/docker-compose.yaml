@@ -11,4 +11,4 @@ services:
       - ../pandoc.yaml:/keystone/.pandoc/metadata/user-metadata.yaml:ro
       - ../publish.txt:/keystone/publish.txt:ro
     env_file:
-      - ../.env
+      - ../project.conf
