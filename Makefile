@@ -3,6 +3,10 @@
 # Load project configuration (only for Makefile)
 include project.conf
 
+# Export host UID/GID so the container writes artifacts as the current user
+export DOCKER_UID := $(shell id -u)
+export DOCKER_GID := $(shell id -g)
+
 # Path to your Compose file and environment file
 COMPOSE_FILE = .docker/docker-compose.yaml
 

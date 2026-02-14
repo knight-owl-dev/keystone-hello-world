@@ -1,8 +1,11 @@
 services:
   keystone:
-    image: lex57ukr/keystone
+    image: ghcr.io/knight-owl-dev/keystone
+    user: "${DOCKER_UID:-1000}:${DOCKER_GID:-1000}"
     network_mode: none
     working_dir: /keystone
+    environment:
+      HOME: /tmp
     volumes:
       - ../appendix:/keystone/appendix:ro
       - ../artifacts:/keystone/artifacts
