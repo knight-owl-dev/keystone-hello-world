@@ -1,6 +1,6 @@
 .PHONY: import publish all clean help
 
-# Load project configuration (only for Makefile)
+# Load environment variables (only for Makefile)
 include project.conf
 
 # Export host UID/GID so the container writes artifacts as the current user
@@ -27,25 +27,25 @@ format ?= pdf
 # Usage: make import artifact=chapter1.docx
 import:
 	@if [ -z "$(artifact)" ]; then \
-		echo "❌ Please provide an artifact filename from the artifacts folder, e.g., make import artifact=chapter1.docx"; \
+		echo "ERROR: Please provide an artifact filename from the artifacts folder, e.g., make import artifact=chapter1.docx" >&2; \
 		exit 1; \
 	fi
 	@$(IMPORT) "$(artifact)"
 	@echo ""
-	@echo "📦 Next steps:"
+	@echo "Next steps:"
 	@echo "  • Review your ./artifacts folder and move imported content to:"
 	@echo "    → ./chapters — to store chapters"
 	@echo "    → ./appendix — to store appendices"
 	@echo "    → ./assets   — to store images and other assets"
 	@echo ""
-	@echo "💡 Tip: Keeping one file per chapter or appendix is ideal for clarity and maintainability."
+	@echo "Tip: Keeping one file per chapter or appendix is ideal for clarity and maintainability."
 	@echo ""
-	@echo "📝 Edit your Markdown files:"
+	@echo "Edit your Markdown files:"
 	@echo "  • Adjust headings and subheadings as needed"
 	@echo "  • Update to keep one file per chapter or appendix"
 	@echo "  • Update image paths to use ./assets where applicable"
 	@echo ""
-	@echo "📚 Finally, update publish.txt to include the new chapters or appendices in the desired order"
+	@echo "Finally, update publish.txt to include the new chapters or appendices in the desired order"
 	@echo ""
 
 # Publish a specific output (PDF or EPUB) for a given target (default: book)
@@ -59,11 +59,10 @@ all:
 	@$(PUBLISH) book epub
 	@$(PUBLISH) book docx
 
-# Clean up build artifacts and unused Docker images
+# Clean up build artifacts
 clean:
-	@echo "🧹 Removing generated artifacts..."
-	@rm -fv $(shell find ./artifacts -type f ! -name '.gitkeep' ! -name '.DS_Store')
-	@echo ""
+	@echo "Removing generated artifacts..." \
+		&& rm -fv $(shell find ./artifacts -type f ! -name '.gitkeep' ! -name '.DS_Store')
 
 # Show help message
 help:
