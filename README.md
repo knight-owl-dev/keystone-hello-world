@@ -50,6 +50,7 @@ You can run these commands from your terminal or integrate them into your flow:
 | `publish` | Builds a specific format using [publish.sh](publish.sh)                          |
 | `all`     | Builds PDF, EPUB and DOCX formats                                                |
 | `clean`   | Prunes images and deletes generated PDFs/EPUBs from [artifacts](/artifacts/)     |
+| `verify`  | Verifies the Docker image signature using cosign                                 |
 | `help`    | Displays a list of available `Make` targets and usage examples                   |
 
 Example:
@@ -70,15 +71,12 @@ make help
 │   └── docker-compose.yaml
 ├── .keystone/          # Keystone metadata
 │   └── sync.json       # Sync metadata
-├── .licenses/          # License documents (Keystone, Pandoc)
-├── appendix/           # Appendices (e.g., appendix-a.md)
-│   └── appendix-a.md
+├── .licenses/          # License documents (Keystone, Pandoc, Fonts)
 ├── artifacts/          # Output folder for built PDFs and EPUBs
 ├── assets/             # Images and cover art
-├── chapters/           # Main content chapters (e.g., introduction.md, chapter-1.md)
-│   ├── introduction.md
-│   ├── chapter-1.md
-│   └── chapter-2.md
+├── manuscript/         # All content — chapters, appendices, etc.
+├── fonts/              # Custom font files and registry
+│   └── fonts-registry.yaml
 ├── drafts/             # Work-in-progress material
 │   └── chapter-3.md
 ├── research/           # Notes, references, citations
@@ -93,6 +91,7 @@ make help
 ├── NOTICE.md           # Project notices and third-party tool acknowledgments
 ├── pandoc.yaml         # Pandoc metadata (title, author, etc.)
 ├── README.md           # This file
+├── shortcuts.yaml      # Custom handler shortcuts
 └── publish.txt         # List of content files to include in order
 ```
 
@@ -129,7 +128,7 @@ However:
 
 See [.licenses/Keystone.md](.licenses/Keystone.md) for full details.
 
-> ⚖️ Keystone builds upon Pandoc, which is licensed under the GNU General Public License (GPL).  
+> ⚖️ Keystone builds upon Pandoc, which is licensed under the GNU General Public License (GPL).
 > For details, see [.licenses/Pandoc.md](.licenses/Pandoc.md).
 
 ## Attribution

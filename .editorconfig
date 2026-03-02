@@ -16,7 +16,7 @@ max_line_length = off
 trim_trailing_whitespace = false
 
 # YAML files
-[*.yaml]
+[*.{yaml,yml}]
 indent_style = space
 indent_size = 2
 
@@ -32,6 +32,16 @@ indent_size = 4
 
 # JSON, if needed later
 [*.json]
+indent_style = space
+indent_size = 2
+
+# Dockerfiles
+[Dockerfile]
+indent_style = space
+indent_size = 2
+
+# Shell-like config files
+[*.conf]
 indent_style = space
 indent_size = 2
 

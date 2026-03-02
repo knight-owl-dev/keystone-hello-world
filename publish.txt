@@ -1,20 +1,20 @@
 # --------------------------------------------------------------------------------
 # This file defines the order in which Markdown files are compiled into your book.
 #
-# Include appendices, prefaces, and other sections in the order you want them
-# to appear — one per line. The first file listed will be the first chapter, etc.
+# The first file listed becomes the first chapter, the second file the second
+# chapter, and so on.
 #
-# Paths are relative to the root of your book project.
-# You can also include files from subdirectories.
+# Paths are relative to the project root and can include subdirectories.
 #
-# Keystone recognizes only appendix/, assets/ and chapters/ for publishing:
-# - DO include contents of appendix/ and chapters/ for publishing.
-# - DO NOT include any files from other directories.
-# - Contents of assets/ are automatically included if referenced inside
-#   your Markdown files.
+# Guidelines:
+# - DO include files from manuscript/ for publishing.
+# - DO NOT include files from other directories.
+# - Assets from assets/ are automatically included when referenced in Markdown.
+#
+# Format: one file path per line (e.g., manuscript/introduction.md)
 # --------------------------------------------------------------------------------
 
-chapters/introduction.md
-chapters/chapter-1.md
-chapters/chapter-2.md
-appendix/appendix-a.md
+manuscript/introduction.md
+manuscript/chapter-1.md
+manuscript/chapter-2.md
+manuscript/appendix-a.md

@@ -44,6 +44,32 @@ date: auto
 #
 lang: en-US
 
+# The build target
+#
+# Selects the documentclass and validation rules for your project.
+#
+# Accepted values:
+# - book      (chapters, recto/verso layout, requires description)
+# - report    (chapters, single-sided layout, requires abstract)
+# - article   (sections, single-sided layout, requires abstract)
+#
+target: book
+
+# Table of contents
+#
+# Generates a table of contents at the beginning of the document.
+# Set to false to disable.
+#
+toc: true
+
+# Section numbering
+#
+# Adds hierarchical numbers to section headings (e.g. 1, 1.1, 1.1.1).
+# Set to false to disable. To exempt individual headings, use the
+# {.unnumbered} attribute: # Preface {.unnumbered}
+#
+numbersections: true
+
 # The footer copyright text
 #
 # This is the copyright text that will appear in the footer of your book.
@@ -56,22 +82,31 @@ lang: en-US
 #
 footer-copyright: auto
 
-# A short description of your book
+# A short description of your document
 #
-# This is a brief description of your book, which will be included in metadata.
-# It should be a concise summary of the book's content and purpose.
-# It can span multiple lines, but keep it short and to the point.
+# Required for the book target. Optional for article (uses abstract instead).
+# Included in EPUB Dublin Core metadata. It can span multiple lines,
+# but keep it short and to the point.
 #
 description: |
   This is a tribute to beginnings.
   In every language, in every framework, "Hello, world" is the first spark — the moment code speaks back.
   This sample book is your invitation to begin — to build something real, reproducible, and yours.
 
-# A list of keywords for your book
+# A short abstract for your document
 #
-# This is a list of keywords or tags that describe the content of your book.
+# Required for the article target. Used as the EPUB description when
+# description is not set. Not used by the book target.
+#
+# abstract: |
+#   A concise summary of the article's content and purpose.
+abstract:
+
+# A list of keywords for your document
+#
+# This is a list of keywords or tags that describe the content of your document.
 # They will be included in metadata for indexing or cataloging purposes.
-# You can use any keywords that are relevant to your book.
+# You can use any keywords that are relevant to your document.
 #
 keywords:
   - hello-world
@@ -114,24 +149,95 @@ geometry: inner=30mm, outer=20mm, top=25mm, bottom=25mm
 # Base font size for LaTeX document
 #
 # Accepted values: 10pt, 11pt, 12pt
-# Default: 10pt
+# Default: 11pt
 #
 fontsize: 11pt
 
 # Font family for the main body text (requires XeLaTeX engine)
 #
-# Mapped to \setmainfont under the hood. Libertine is the Keystone default.
-# Comment out to fall back to the standard LaTeX font (Computer Modern).
+# The Keystone font registry generates \setmainfont from this value.
+# Libertine is the default. Comment out to fall back to Latin Modern.
 #
-# Reference: https://pandoc.org/MANUAL.html#fonts
+# Supported values:
+#   - libertine      (Linux Libertine — serif, with Biolinum as sans companion)
+#   - dejavu-serif   (DejaVu Serif)
+#   - dejavu-sans    (DejaVu Sans)
+#   - dejavu-mono    (DejaVu Sans Mono)
+#   - latin-modern   (Latin Modern Roman — the TeX default)
 #
-# Supported values (confirmed):
-#   - libertine    (maps to Libertinus Serif, supports localization)
-#   - palatino     (maps to Palatino)
-#   - times        (maps to Times New Roman)
-#   - helvet       (maps to Helvetica)
+# Any other value is passed through to the Pandoc template as
+# \usepackage{<value>} — use this for custom LaTeX font packages.
 #
 fontfamily: libertine
+
+# Draft watermark (PDF only)
+#
+# Prints a light gray diagonal watermark across every page.
+# Useful for marking review copies, confidential documents, or works in progress.
+#
+# Accepted values:
+#   disabled  — no watermark (default)
+#   enabled   — prints "DRAFT" watermark
+#   <text>    — prints custom watermark text (e.g. "CONFIDENTIAL", "BORRADOR")
+#
+draft:
+
+# Draft watermark scale (PDF only)
+#
+# Controls the size of the draft watermark relative to the page.
+# Auto-scales by default so longer text fits the page diagonal.
+# Set an explicit positive number to override.
+#
+# Accepted values:
+#   (empty)  — auto-scale based on text length (default)
+#   0.5      — half the default size
+#   1.0      — full default size (fits ~5 characters diagonally)
+#   1.5      — 50% larger than default
+#
+draft-scale:
+
+# LaTeX document class options (PDF only)
+#
+# A list of options passed to LaTeX's \documentclass. Pandoc's default
+# template applies these automatically. See the variables-for-latex
+# reference linked above.
+#
+# Common values:
+#   - twocolumn   (two-column page layout)
+#   - landscape   (landscape orientation)
+#   - draft       (show overfull hbox warnings)
+#   - oneside     (disable recto/verso page differences)
+#
+# Example:
+#   classoption:
+#     - twocolumn
+#
+classoption:
+
+# -- Code block styling --------------------------------------------------------
+
+# Syntax highlighting theme for code blocks
+#
+# Controls both the token colors (keywords, strings, comments) and the
+# background color of code blocks in PDF and EPUB output. Pandoc handles
+# token-level coloring; Keystone coordinates the background (and foreground
+# for dark themes) so everything looks right out of the box.
+#
+# Light themes:
+#   - tango        (warm gray background, Tango palette)
+#   - pygments     (Python Pygments palette)
+#   - kate         (KDE Kate editor palette, white background)
+#   - monochrome   (grayscale — bold/italic only, no syntax colors)
+#   - haddock      (Haskell Haddock palette)
+#
+# Dark themes:
+#   - espresso     (warm brown background, tan text)
+#   - zenburn      (low-contrast dark gray, easy on the eyes)
+#   - breezedark   (KDE Breeze Dark, cool blue-gray background)
+#
+# Default: tango
+#
+code-theme: tango
 
 # -- EPUB options --------------------------------------------------------------
 
@@ -141,7 +247,8 @@ fontfamily: libertine
 # It should be a valid image format (e.g., PNG, JPG).
 #
 # This maps to Pandoc's `cover-image` metadata field and is used only
-# when building EPUB output.
+# when building EPUB output. Leaving it empty is safe — the Keystone
+# Lua filter strips empty values so EPUB builds proceed without a cover.
 #
 # Example: ./assets/cover.jpg
 #

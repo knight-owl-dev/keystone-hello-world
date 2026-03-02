@@ -2,3 +2,7 @@
 
 # Ensure all text files are stored in LF only
 * text=auto
+
+# Binary formats — prevent line-ending conversion and diff noise
+*.docx binary
+*.odt binary
