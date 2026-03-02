@@ -1,6 +1,6 @@
 services:
   keystone:
-    image: ghcr.io/knight-owl-dev/keystone
+    image: ghcr.io/knight-owl-dev/keystone:v1.8.6
     user: "${DOCKER_UID:-1000}:${DOCKER_GID:-1000}"
     network_mode: none
     working_dir: /keystone
