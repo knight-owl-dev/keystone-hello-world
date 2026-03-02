@@ -2,14 +2,8 @@
 .git/
 .gitkeep
 
-# Ignore internal Keystone files except the sample content
-.keystone/*
-!.keystone/sample/**
-.keystone-image/
-
-# Local notes and non-build content (not part of the image)
-drafts/
-research/
+# Keystone private files
+.keystone/
 
 # Output and temporary artifacts
 artifacts/
@@ -22,5 +16,8 @@ artifacts/
 # OS-specific clutter
 .DS_Store
 
-# Operational config (not needed inside the container)
+# Operational config (not needed inside container)
 project.conf
+
+# Documentation files (not needed in container)
+**/README.md

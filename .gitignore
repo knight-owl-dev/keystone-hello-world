@@ -1,6 +1,5 @@
-# exclude all files in the artifacts directory except for .gitkeep
-/artifacts/*
-!/artifacts/.gitkeep
+# build output (created on demand by publish.sh / import.sh)
+/artifacts/
 
 .DS_Store
 

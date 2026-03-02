@@ -1,4 +1,6 @@
-.PHONY: import publish all clean help
+.DEFAULT_GOAL := help
+
+.PHONY: import publish all clean verify help
 
 # Load environment variables (only for Makefile)
 include project.conf
@@ -20,7 +22,6 @@ IMPORT = $(DC) run --rm keystone ./.pandoc/import.sh
 PUBLISH = $(DC) run --rm keystone ./.pandoc/publish.sh
 
 # Defaults
-target ?= book
 format ?= pdf
 
 # Import a document (DOCX, ODT, RTF, HTML, etc.) from the `./artifacts` folder
@@ -34,43 +35,50 @@ import:
 	@echo ""
 	@echo "Next steps:"
 	@echo "  • Review your ./artifacts folder and move imported content to:"
-	@echo "    → ./chapters — to store chapters"
-	@echo "    → ./appendix — to store appendices"
-	@echo "    → ./assets   — to store images and other assets"
+	@echo "    → ./manuscript — to store chapters and appendices"
+	@echo "    → ./assets     — to store images and other assets"
 	@echo ""
-	@echo "Tip: Keeping one file per chapter or appendix is ideal for clarity and maintainability."
+	@echo "Tip: Keeping one file per chapter or section is ideal for clarity and maintainability."
 	@echo ""
 	@echo "Edit your Markdown files:"
 	@echo "  • Adjust headings and subheadings as needed"
-	@echo "  • Update to keep one file per chapter or appendix"
+	@echo "  • Update to keep one file per chapter or section"
 	@echo "  • Update image paths to use ./assets where applicable"
 	@echo ""
-	@echo "Finally, update publish.txt to include the new chapters or appendices in the desired order"
+	@echo "Finally, update publish.txt to include the new files in the desired order"
 	@echo ""
 
-# Publish a specific output (PDF or EPUB) for a given target (default: book)
-# Usage: make publish [target=book] [format=pdf|epub]
+# Publish a specific output (PDF or EPUB)
+# Usage: make publish [format=pdf|epub]
 publish:
-	@$(PUBLISH) $(target) $(format)
+	@$(PUBLISH) $(format)
 
-# Build all supported formats for the default target
+# Build all supported formats
 all:
-	@$(PUBLISH) book pdf
-	@$(PUBLISH) book epub
-	@$(PUBLISH) book docx
+	@$(PUBLISH) pdf
+	@$(PUBLISH) epub
+	@$(PUBLISH) docx
 
 # Clean up build artifacts
 clean:
 	@echo "Removing generated artifacts..." \
-		&& rm -fv $(shell find ./artifacts -type f ! -name '.gitkeep' ! -name '.DS_Store')
+		&& rm -rf ./artifacts
+
+# Verify the Keystone Docker image signature
+verify:
+	@docker run --rm gcr.io/projectsigstore/cosign verify \
+		ghcr.io/knight-owl-dev/keystone:latest \
+		--certificate-oidc-issuer https://token.actions.githubusercontent.com \
+		--certificate-identity-regexp github.com/knight-owl-dev/keystone
 
 # Show help message
 help:
 	@echo ""
 	@echo "Keystone Build Commands:"
-	@echo "  make publish [target=book] [format=pdf|epub|docx]  Build a specific format (default: book.pdf)"
+	@echo "  make publish [format=pdf|epub|docx]                Build a specific format (default: pdf)"
 	@echo "  make import artifact=input-file.ext                Import a document (DOCX, ODT, RTF) from ./artifacts"
 	@echo "  make all                                           Build all supported formats (PDF, EPUB, DOCX)"
 	@echo "  make clean                                         Delete generated artifacts from ./artifacts"
+	@echo "  make verify                                        Verify the Docker image signature"
 	@echo "  make help                                          Show this message"
 	@echo ""

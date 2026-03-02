@@ -1,10 +1,18 @@
 # The Journey Begins
 
+::: epigraph
+"The best way to predict the future is to invent it."
+
+— Alan Kay
+:::
+
 Every project has a story. This one begins not with a book, but with a problem.
 
 ## The Friction We Felt
 
+::: {.dropcap lines=2}
 Somewhere between the outline and the output, between raw ideas and polished pages, we realized that publishing — for developers — felt... wrong.
+:::
 
 Writing was manageable. Structuring was fine. But **publishing**? That was a patchwork of copy-pasting, PDF settings, rogue formatting, and mysterious style files.
 
@@ -37,9 +45,7 @@ It's not a platform. It’s a philosophy:
 
 Everything in Keystone is discoverable, editable, and version-controlled. From the layout to the metadata, you are in command.
 
-No black boxes. No wizard-driven magic.
-
-Just Markdown, Make, and a beautifully transparent build.
+No black boxes. No wizard-driven magic. Just Markdown, Make, and a beautifully transparent build.
 
 ## Looking to the Hourglass
 
@@ -57,6 +63,4 @@ This chapter — this book — is a working example of what Keystone makes possi
 
 You can build from here. Or you can delete it all and start fresh.
 
-Either way, the pipeline is yours now.
-
-Welcome to the journey.
+Either way, the pipeline is yours now. Welcome to the journey.
