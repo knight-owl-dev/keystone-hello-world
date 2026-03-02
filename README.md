@@ -77,10 +77,6 @@ make help
 ├── manuscript/         # All content — chapters, appendices, etc.
 ├── fonts/              # Custom font files and registry
 │   └── fonts-registry.yaml
-├── drafts/             # Work-in-progress material
-│   └── chapter-3.md
-├── research/           # Notes, references, citations
-│   └── about-research.md
 ├── .dockerignore       # Docker ignore file
 ├── .editorconfig       # Editor defaults
 ├── project.conf        # Project configuration

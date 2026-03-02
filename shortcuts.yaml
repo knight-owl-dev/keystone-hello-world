@@ -29,3 +29,12 @@ poem-date:
   class: align
   align: right
   style: italic
+
+pause:
+  class: scene-break
+  body: |
+    ~ ~ ~
+
+thumbnail:
+  class: figure
+  width: 25%
