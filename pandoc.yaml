@@ -70,6 +70,30 @@ toc: true
 #
 numbersections: true
 
+# Text justification control
+#
+# Controls whether body text is justified (even left and right margins)
+# or ragged-right (even left margin only). Justified is the publishing
+# default; ragged-right can improve readability on narrow page widths.
+#
+# Accepted values:
+#   auto      — use the target's default (justified for book/report/article)
+#   disabled  — ragged-right text
+#
+justify-control: auto
+
+# First-line paragraph indentation control
+#
+# Controls whether continuation paragraphs have a first-line indent.
+# Indented paragraphs are the typographic norm for books; articles and
+# reports use block paragraphs (no indent) by default.
+#
+# Accepted values:
+#   auto      — use the target's default (indented for book, none for article/report)
+#   disabled  — no first-line indent
+#
+indent-control: auto
+
 # The footer copyright text
 #
 # This is the copyright text that will appear in the footer of your book.

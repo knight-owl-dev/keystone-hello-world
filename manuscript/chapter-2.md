@@ -272,15 +272,20 @@ This is a new chapter that starts on a new page.
 
 ## Poem Dates
 
-If you want to include dates in your poems, you can use the `::: poem-date` directive after defining a shortcut for the `align` div. This is useful for indicating when a poem was written or published while maintaining consistent formatting.
+If you want to include dates in your poems, you can use the `::: poem-date` directive after defining a shortcut for the `align` handler. This is useful for indicating when a poem was written or published while maintaining consistent formatting.
 
 For example, add this to your shortcuts file:
 
 ```yaml
 poem-date:
   class: align
-  align: right
-  style: italic
+  interface:
+    style:
+      bind: class.style
+      default: right
+  body: |
+    ::: {.font style="italic"}
+    :::
 ```
 
 Then, to include a date in your poem, you can write:

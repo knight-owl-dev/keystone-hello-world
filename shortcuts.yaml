@@ -1,34 +1,49 @@
-# shortcuts.yaml — Named style aliases for Keystone div/span handlers
+# shortcuts.yaml — Project-specific style aliases
 #
-# Each entry maps a shortcut name to a handler class and its attributes.
-# Use shortcuts in Markdown the same way you use handler classes:
-#
-#   ::: garamond
-#   This paragraph renders in EB Garamond.
-#   :::
-#
-#   A word in [EB Garamond]{.garamond} inline.
+# Define your own vocabulary on top of Keystone's built-in system shortcuts
+# (align, font, figure, etc.). User shortcuts layer on top of system
+# shortcuts with last-writer-wins — defining a name that matches a system
+# shortcut shadows it; deleting the entry restores the default.
 #
 # Format:
 #   shortcut-name:
-#     class: handler-class
-#     attribute: value
+#     class: handler-or-shortcut
+#     interface:
+#       attr-name:
+#         bind: class.handler-attr
+#         default: value
 #
-# Shortcuts can chain — a shortcut's class can reference another shortcut:
+# Example — a named font preset:
 #   garamond:
 #     class: font
-#     family: eb-garamond
+#     interface:
+#       family:
+#         bind: class.family
+#         default: eb-garamond
+#       size:
+#         bind: class.size
+#       style:
+#         bind: class.style
+#
+# Example — a chain shortcut building on the preset above:
 #   small-garamond:
 #     class: garamond
-#     size: small
+#     interface:
+#       size:
+#         bind: class.size
+#         default: small
 #
-# Available handler classes: align, font, dialog, pagebreak, latex-only
-# See .pandoc/filters/divs/ for handler documentation.
+# See docs/shortcuts.md for the full interface system reference.
 
 poem-date:
   class: align
-  align: right
-  style: italic
+  interface:
+    style:
+      bind: class.style
+      default: right
+  body: |
+    ::: {.font style="italic"}
+    :::
 
 pause:
   class: scene-break
@@ -37,4 +52,7 @@ pause:
 
 thumbnail:
   class: figure
-  width: 25%
+  interface:
+    width:
+      bind: class.width
+      default: 25%
