@@ -92,7 +92,7 @@ justify-control: auto
 #   auto      — use the target's default (indented for book, none for article/report)
 #   disabled  — no first-line indent
 #
-indent-control: auto
+indent-control: disabled
 
 # The footer copyright text
 #

@@ -21,3 +21,6 @@ project.conf
 
 # Documentation files (not needed in container)
 **/README.md
+
+# Build-time integrity checksums (not needed in container)
+**/*.sha256
