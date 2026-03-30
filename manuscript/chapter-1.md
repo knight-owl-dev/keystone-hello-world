@@ -1,9 +1,7 @@
 # The Journey Begins
 
-::: epigraph
+::: {.epigraph source="Alan Kay"}
 "The best way to predict the future is to invent it."
-
-— Alan Kay
 :::
 
 Every project has a story. This one begins not with a book, but with a problem.

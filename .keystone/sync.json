@@ -1,9 +1,9 @@
 {
   "source": "keystone",
   "branch": "main",
-  "commit": "d9389d35320b452931230ea901d9aefce8987896",
-  "version": "v2.0.2",
+  "commit": "e50e1f0c01508624cc68eb5305479a23e8746c06",
+  "version": "v2.0.4",
   "template": "keystone-template-core-slim",
-  "timestamp": "2026-03-15T20:05:14Z",
+  "timestamp": "2026-03-30T18:28:11Z",
   "note": "This file was created by the sync process"
 }
