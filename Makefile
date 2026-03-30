@@ -67,7 +67,7 @@ clean:
 # Verify the Keystone Docker image signature
 verify:
 	@docker run --rm gcr.io/projectsigstore/cosign verify \
-		ghcr.io/knight-owl-dev/keystone:v2.0.4 \
+		ghcr.io/knight-owl-dev/keystone:v2.0.5 \
 		--certificate-oidc-issuer https://token.actions.githubusercontent.com \
 		--certificate-identity-regexp github.com/knight-owl-dev/keystone
 
