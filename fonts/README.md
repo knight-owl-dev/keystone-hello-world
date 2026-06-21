@@ -5,6 +5,9 @@ registering them in `fonts-registry.yaml`. Registered fonts work everywhere
 built-in fonts do — as the document font, in `.font` div/span overrides, and
 in shortcuts.
 
+📚 For the full typography guide — built-in families, the `.font` shortcut, sizes,
+and drop caps — see the manual at <https://keystone.knight-owl.dev/writing/typography/>.
+
 ## Quick Start
 
 1. **Place font files** — copy `.otf` files into this `fonts/` directory

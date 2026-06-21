@@ -49,10 +49,34 @@ The following packages are installed via `tlmgr` on top of the `pandoc/latex`
 base image. All are licensed under the LaTeX Project Public License (LPPL).
 Font packages installed via `tlmgr` are listed separately under Fonts.
 
+### draftwatermark
+
+- License: [LPPL 1.3c or later](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/draftwatermark](https://ctan.org/pkg/draftwatermark)
+- Included in the Docker image
+
+### endnotes
+
+- License: [LPPL 1.2](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/endnotes](https://ctan.org/pkg/endnotes)
+- Included in the Docker image
+
 ### fvextra
 
 - License: [LPPL 1.3a or later](https://www.latex-project.org/lppl/)
 - Source: [https://ctan.org/pkg/fvextra](https://ctan.org/pkg/fvextra)
+- Included in the Docker image
+
+### hyperxmp
+
+- License: [LPPL 1.3c or later](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/hyperxmp](https://ctan.org/pkg/hyperxmp)
+- Included in the Docker image
+
+### koma-script
+
+- License: [LPPL 1.3c or later](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/koma-script](https://ctan.org/pkg/koma-script)
 - Included in the Docker image
 
 ### lettrine
@@ -71,6 +95,12 @@ Font packages installed via `tlmgr` are listed separately under Fonts.
 
 - License: [LPPL 1.3c or later](https://www.latex-project.org/lppl/)
 - Source: [https://ctan.org/pkg/pdfcol](https://ctan.org/pkg/pdfcol)
+- Included in the Docker image
+
+### ragged2e
+
+- License: [LPPL 1.3c or later](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/ragged2e](https://ctan.org/pkg/ragged2e)
 - Included in the Docker image
 
 ### tcolorbox
@@ -127,6 +157,40 @@ Pagella, Termes, Heros, Schola, Bonum, Adventor, Cursor.
 - Source: [https://github.com/georgd/EB-Garamond](https://github.com/georgd/EB-Garamond)
 - Included in the Docker image
 - License file: [.licenses/Fonts.md](.licenses/Fonts.md)
+
+### Fourier Ornaments
+
+Ornamental glyph font (FourierOrns) from the fourier package.
+
+- License: LaTeX Project Public License 1.3c
+- Source: [https://ctan.org/pkg/fourier](https://ctan.org/pkg/fourier)
+- Included in the Docker image
+- License file: [.licenses/Fonts.md](.licenses/Fonts.md)
+
+### IM Fell Flowers
+
+Floral printer's ornaments (FeFlow1, FeFlow2) from the imfellenglish package.
+
+- License: SIL Open Font License 1.1
+- Source: [https://ctan.org/pkg/imfellenglish](https://ctan.org/pkg/imfellenglish)
+- Included in the Docker image
+- License file: [.licenses/Fonts.md](.licenses/Fonts.md)
+
+## Citation Styles (CSL)
+
+The following Citation Style Language (CSL) styles are included in the Keystone
+Docker image to format citations and bibliographies via Pandoc citeproc. Each is
+an independent data file distributed alongside Keystone (mere aggregation under
+GPL Section 2) and is redistributed unmodified.
+
+### Chicago Manual of Style
+
+Chicago Manual of Style 18th edition — author-date and notes-and-bibliography
+variants, from the Citation Style Language project.
+
+- License: [Creative Commons Attribution-ShareAlike 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+- Source: [https://github.com/citation-style-language/styles](https://github.com/citation-style-language/styles)
+- Included in the Docker image
 
 ---
 
