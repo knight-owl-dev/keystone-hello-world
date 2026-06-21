@@ -19,7 +19,12 @@ DC = docker compose -p $(KEYSTONE_DOCKER_COMPOSE_PROJECT) --file $(COMPOSE_FILE)
 IMPORT = $(DC) run --rm keystone ./.pandoc/import.sh
 
 # Base publish command
-PUBLISH = $(DC) run --rm keystone ./.pandoc/publish.sh
+#
+# `using=<name>` selects a build configuration (a named symbol set declared in
+# project.conf as KEYSTONE_DEFINE_<name>) for conditional inclusion. It is
+# forwarded as an env override so it wins over the project.conf default, and it
+# also suffixes the output filename so editions don't clobber each other.
+PUBLISH = $(DC) run --rm $(if $(using),-e KEYSTONE_USING=$(using)) keystone ./.pandoc/publish.sh
 
 # Defaults
 format ?= pdf
@@ -38,7 +43,7 @@ import:
 	@echo "    → ./manuscript — to store chapters and appendices"
 	@echo "    → ./assets     — to store images and other assets"
 	@echo ""
-	@echo "Tip: Keeping one file per chapter or section is ideal for clarity and maintainability."
+	@echo "Tip: Keeping one file per chapter or section is ideal for clarity and maintainability"
 	@echo ""
 	@echo "Edit your Markdown files:"
 	@echo "  • Adjust headings and subheadings as needed"
@@ -49,7 +54,7 @@ import:
 	@echo ""
 
 # Publish a specific output (PDF or EPUB)
-# Usage: make publish [format=pdf|epub]
+# Usage: make publish [format=pdf|epub] [using=<config>]
 publish:
 	@$(PUBLISH) $(format)
 
@@ -67,7 +72,7 @@ clean:
 # Verify the Keystone Docker image signature
 verify:
 	@docker run --rm gcr.io/projectsigstore/cosign verify \
-		ghcr.io/knight-owl-dev/keystone:v2.0.5 \
+		ghcr.io/knight-owl-dev/keystone:v2.2.1 \
 		--certificate-oidc-issuer https://token.actions.githubusercontent.com \
 		--certificate-identity-regexp github.com/knight-owl-dev/keystone
 
@@ -75,7 +80,7 @@ verify:
 help:
 	@echo ""
 	@echo "Keystone Build Commands:"
-	@echo "  make publish [format=pdf|epub|docx]                Build a specific format (default: pdf)"
+	@echo "  make publish [format=pdf|epub|docx] [using=<config>]   Build a specific format (default: pdf)"
 	@echo "  make import artifact=input-file.ext                Import a document (DOCX, ODT, RTF) from ./artifacts"
 	@echo "  make all                                           Build all supported formats (PDF, EPUB, DOCX)"
 	@echo "  make clean                                         Delete generated artifacts from ./artifacts"
