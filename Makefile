@@ -24,7 +24,14 @@ IMPORT = $(DC) run --rm keystone ./.pandoc/import.sh
 # project.conf as KEYSTONE_DEFINE_<name>) for conditional inclusion. It is
 # forwarded as an env override so it wins over the project.conf default, and it
 # also suffixes the output filename so editions don't clobber each other.
-PUBLISH = $(DC) run --rm $(if $(using),-e KEYSTONE_USING=$(using)) keystone ./.pandoc/publish.sh
+#
+# `strict=true|false` overrides KEYSTONE_WARNINGS_AS_ERRORS the same way: any
+# value is forwarded as an env override and wins over the project.conf default,
+# so CI can run `make publish strict=true` without editing project.conf.
+PUBLISH = $(DC) run --rm \
+    $(if $(using),-e KEYSTONE_USING=$(using)) \
+    $(if $(strict),-e KEYSTONE_WARNINGS_AS_ERRORS=$(strict)) \
+    keystone ./.pandoc/publish.sh
 
 # Defaults
 format ?= pdf
@@ -54,7 +61,7 @@ import:
 	@echo ""
 
 # Publish a specific output (PDF or EPUB)
-# Usage: make publish [format=pdf|epub] [using=<config>]
+# Usage: make publish [format=pdf|epub] [using=<config>] [strict=true|false]
 publish:
 	@$(PUBLISH) $(format)
 
@@ -72,7 +79,7 @@ clean:
 # Verify the Keystone Docker image signature
 verify:
 	@docker run --rm gcr.io/projectsigstore/cosign verify \
-		ghcr.io/knight-owl-dev/keystone:v2.2.1 \
+		ghcr.io/knight-owl-dev/keystone:v2.2.3 \
 		--certificate-oidc-issuer https://token.actions.githubusercontent.com \
 		--certificate-identity-regexp github.com/knight-owl-dev/keystone
 
