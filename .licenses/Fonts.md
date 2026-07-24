@@ -41,3 +41,17 @@ Includes: Pagella, Termes, Heros, Schola, Bonum, Adventor, Cursor.
 - SPDX: `OFL-1.1`
 - Source: <https://github.com/georgd/EB-Garamond>
 - Copyright: Georg Duffner, Octavio Pardo
+
+## Noto Sans Mono
+
+- License: SIL Open Font License 1.1
+- SPDX: `OFL-1.1`
+- Source: <https://github.com/notofonts/latin-greek-cyrillic>
+- Copyright: The Noto Project Authors (Google)
+
+## Source Code Pro
+
+- License: SIL Open Font License 1.1
+- SPDX: `OFL-1.1`
+- Source: <https://github.com/adobe-fonts/source-code-pro>
+- Copyright: Adobe Systems Incorporated

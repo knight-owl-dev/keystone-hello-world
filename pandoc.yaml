@@ -70,6 +70,15 @@ target: book
 #
 toc: true
 
+# Table of contents depth
+#
+# How many heading levels appear in the table of contents, counted from
+# your top-level heading (# = level 1). Shown identically in every output
+# format; 3 lists #, ## and ###. Must be a whole number of 1 or greater —
+# other values fail the build.
+#
+toc-depth: 3
+
 # Section numbering
 #
 # Adds hierarchical numbers to section headings (e.g. 1, 1.1, 1.1.1).
@@ -77,6 +86,16 @@ toc: true
 # {.unnumbered} attribute: # Preface {.unnumbered}
 #
 numbersections: true
+
+# Section numbering depth
+#
+# How many heading levels are numbered, counted from your top-level
+# heading (# = level 1); headings below the depth appear without a number,
+# identically in every output format. Requires section numbering (above).
+# Leave blank to number every level; set a value to cap the depth.
+# Must be a whole number of 1 or greater — other values fail the build.
+#
+secnumdepth:
 
 # Text justification control
 #
@@ -522,29 +541,81 @@ papersize: b5
 #
 geometry: inner=30mm, outer=20mm, top=25mm, bottom=25mm
 
-# Base font size for LaTeX document
+# Base font size for the PDF (LaTeX)
 #
-# Accepted values: 10pt, 11pt, 12pt
+# Standard targets accept 10pt, 11pt, 12pt; KOMA targets also accept 13pt, 14pt,
+# 17pt, 20pt. An unsupported size warns and snaps to the nearest allowed size.
+# See https://keystone.knight-owl.dev/configuration/targets/#base-font-size
 # Default: 11pt
 #
 fontsize: 11pt
 
-# Font family for the main body text (requires XeLaTeX engine)
+# Line spacing for LaTeX document (PDF only)
 #
-# The Keystone font registry generates \setmainfont from this value.
-# Libertine is the default. Comment out to fall back to Latin Modern.
+# A multiplier on the base leading: 1.0 is single-spaced (the default when
+# left empty). Around 1.05–1.15 reads well in a book; 1.5 or 2.0 opens it up
+# for review drafts. Must be a positive number — a non-positive or
+# non-numeric value fails the build.
 #
-# Supported values:
+# PDF only — Pandoc maps this to the setspace package's \setstretch. EPUB
+# leaves line spacing to the reading system (reflowable readers give the
+# reader their own control, and a forced value fights it), and DOCX/ODT
+# ignore it.
+#
+linestretch:
+
+# Hyperlink colors (PDF only)
+#
+# By default links are drawn as colored boxes. Set colorlinks: true to color the
+# link *text* instead (the usual choice for books). colorlinks gates the four
+# colors below — they have no effect while it is false.
+#
+# Each color is a #RRGGBB hex value, the form your OS color picker emits. Quote
+# it — a bare # starts a YAML comment, so `linkcolor: #1A5FB4` is read as empty.
+#
+#   linkcolor  internal links and cross-references
+#   urlcolor   external URLs
+#   citecolor  citations
+#   toccolor   table-of-contents entries (needs a table of contents)
+#
+# A value that is not a #RRGGBB hex color fails the build.
+#
+colorlinks: false
+linkcolor:
+urlcolor:
+citecolor:
+toccolor:
+
+# Font family for the main body text (PDF and EPUB)
+#
+# Must be a font-registry key. An unrecognized value warns and falls back to
+# the default (a hard error under warnings-as-errors).
+#
+# Common values (full list: https://keystone.knight-owl.dev/writing/typography/):
 #   - libertine      (Linux Libertine — serif, with Biolinum as sans companion)
 #   - dejavu-serif   (DejaVu Serif)
 #   - dejavu-sans    (DejaVu Sans)
 #   - dejavu-mono    (DejaVu Sans Mono)
-#   - latin-modern   (Latin Modern Roman — the TeX default)
+#   - latin-modern   (Latin Modern Roman, default)
 #
-# Any other value is passed through to the Pandoc template as
-# \usepackage{<value>} — use this for custom LaTeX font packages.
+# For a font not listed, register it in fonts/fonts-registry.yaml — that
+# makes it a valid key here.
 #
 fontfamily: libertine
+
+# Font for code blocks and inline code (PDF and EPUB)
+#
+# Must be a font-registry key. An unrecognized value warns and falls back to
+# the default (a hard error under warnings-as-errors). Set this when the default
+# code font lacks glyphs your code needs — e.g. dejavu-mono covers a far wider
+# Unicode range.
+#
+# Common values (full list: https://keystone.knight-owl.dev/writing/typography/):
+#   - latin-modern-mono  (Latin Modern Mono, default)
+#   - dejavu-mono        (DejaVu Sans Mono — wide Unicode coverage)
+#   - tex-gyre-cursor    (TeX Gyre Cursor)
+#
+monofont: noto-mono
 
 # Draft watermark (PDF only)
 #

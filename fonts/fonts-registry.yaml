@@ -17,7 +17,6 @@
 #   main.italic      — Italic variant filename
 #   main.bold_italic — Bold-italic variant filename
 #   main.path        — Absolute path to font files (default: /keystone/fonts/)
-#   command          — LaTeX command name (auto-generated if omitted)
 #   sans             — Registry key of a sans-serif companion from the same
 #                      type family. When used as the document font, Keystone
 #                      also sets the sans-serif font to this companion.

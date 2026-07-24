@@ -15,7 +15,7 @@ This project makes use of the following third-party tools and formats, which are
 
 - License: [LaTeX Project Public License (LPPL)](https://www.latex-project.org/lppl/)
 - Source: [https://www.latex-project.org/](https://www.latex-project.org/)
-- Included in the Docker image (base distribution via `pandoc/latex`, additional packages via `tlmgr`)
+- Included in the Docker image (TeX Live installed via `install-tl` from a pinned tlnet snapshot, packages via `tlmgr`). Per-package licenses vary — see TeX Live Packages below.
 
 ### GNU Make
 
@@ -45,9 +45,41 @@ This project makes use of the following third-party tools and formats, which are
 
 ## TeX Live Packages
 
-The following packages are installed via `tlmgr` on top of the `pandoc/latex`
-base image. All are licensed under the LaTeX Project Public License (LPPL).
-Font packages installed via `tlmgr` are listed separately under Fonts.
+Installed via `install-tl` and `tlmgr` from a pinned tlnet snapshot
+(`TL_SNAPSHOT` in `.docker/Dockerfile`). Font packages are listed
+separately under Fonts. Each license was confirmed per package with
+`tlmgr info <pkg>` (the `cat-license` field).
+
+### Base LaTeX / XeLaTeX packages
+
+The general engine and pandoc-template closure, installed in the Docker `base`
+stage. Each package's source is `https://ctan.org/pkg/<name>`.
+
+- [LPPL](https://www.latex-project.org/lppl/): amsmath, babel, babel-basque,
+  babel-czech, babel-danish, babel-dutch, babel-english, babel-finnish,
+  babel-french, babel-german, babel-hungarian, babel-italian, babel-norsk,
+  babel-polish, babel-portuges, babel-spanish, babel-swedish, bidi, bookmark,
+  booktabs, caption, fancyvrb, float, fontspec, footnotehyper, geometry,
+  graphics, hyperref, iftex, latex, microtype, multirow, parskip, setspace,
+  soul, tools, unicode-math, upquote, xcolor, xurl
+- [X11/MIT](https://spdx.org/licenses/X11.html): xetex
+- [SIL Open Font License](https://openfontlicense.org/): amsfonts (AMS math
+  symbol fonts)
+- Free (permissive, redistribution allowed): framed, ulem
+
+`lm` and `lm-math` are also installed here for the default and math fonts; they
+are licensed under the GUST Font License and attributed under Fonts › Latin
+Modern.
+
+Hyphenation patterns (`hyphen-basque` through `hyphen-swedish`) ship via
+[hyph-utf8](https://ctan.org/pkg/hyph-utf8). Each language file carries its own
+license — MIT, LGPL, GPL, public domain, the Knuth license, or other free terms
+— documented in the pattern files themselves.
+
+### Keystone feature packages
+
+Installed in the Docker `keystone-tex` stage for Keystone's own features. All
+are licensed under the LaTeX Project Public License (LPPL).
 
 ### draftwatermark
 
@@ -59,6 +91,12 @@ Font packages installed via `tlmgr` are listed separately under Fonts.
 
 - License: [LPPL 1.2](https://www.latex-project.org/lppl/)
 - Source: [https://ctan.org/pkg/endnotes](https://ctan.org/pkg/endnotes)
+- Included in the Docker image
+
+### fancyhdr
+
+- License: [LPPL 1.3 or later](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/fancyhdr](https://ctan.org/pkg/fancyhdr)
 - Included in the Docker image
 
 ### fvextra
@@ -96,6 +134,12 @@ Font packages installed via `tlmgr` are listed separately under Fonts.
 - License: [LPPL 1.3c or later](https://www.latex-project.org/lppl/)
 - Source: [https://ctan.org/pkg/pdfcol](https://ctan.org/pkg/pdfcol)
 - Included in the Docker image
+
+### psnfss
+
+- License: [LPPL](https://www.latex-project.org/lppl/)
+- Source: [https://ctan.org/pkg/psnfss](https://ctan.org/pkg/psnfss)
+- Provides `pifont.sty` (Dingbat symbols); included in the Docker image
 
 ### ragged2e
 
@@ -137,6 +181,8 @@ GPL Section 2). All permit redistribution and EPUB embedding.
 
 ### Latin Modern
 
+Latin Modern Roman and the Latin Modern Math font (latinmodern-math).
+
 - License: GUST Font License (LPPL-1.3c)
 - Source: [https://www.gust.org.pl/projects/e-foundry/latin-modern](https://www.gust.org.pl/projects/e-foundry/latin-modern)
 - Included in the Docker image
@@ -155,6 +201,20 @@ Pagella, Termes, Heros, Schola, Bonum, Adventor, Cursor.
 
 - License: SIL Open Font License 1.1
 - Source: [https://github.com/georgd/EB-Garamond](https://github.com/georgd/EB-Garamond)
+- Included in the Docker image
+- License file: [.licenses/Fonts.md](.licenses/Fonts.md)
+
+### Noto Sans Mono
+
+- License: SIL Open Font License 1.1
+- Source: [https://github.com/notofonts/latin-greek-cyrillic](https://github.com/notofonts/latin-greek-cyrillic)
+- Included in the Docker image
+- License file: [.licenses/Fonts.md](.licenses/Fonts.md)
+
+### Source Code Pro
+
+- License: SIL Open Font License 1.1
+- Source: [https://github.com/adobe-fonts/source-code-pro](https://github.com/adobe-fonts/source-code-pro)
 - Included in the Docker image
 - License file: [.licenses/Fonts.md](.licenses/Fonts.md)
 
