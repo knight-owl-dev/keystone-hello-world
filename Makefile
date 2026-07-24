@@ -78,10 +78,10 @@ clean:
 
 # Verify the Keystone Docker image signature
 verify:
-	@docker run --rm gcr.io/projectsigstore/cosign verify \
-		ghcr.io/knight-owl-dev/keystone:v2.2.3 \
+	@docker run --rm ghcr.io/sigstore/cosign/cosign:v3.1.2@sha256:d91bc4e7e95e8d2f549c747a72dc174f90579e410a1695f57f686674f84ce849 verify \
+		ghcr.io/knight-owl-dev/keystone:v2.2.4 \
 		--certificate-oidc-issuer https://token.actions.githubusercontent.com \
-		--certificate-identity-regexp github.com/knight-owl-dev/keystone
+		--certificate-identity-regexp '^https://github\.com/knight-owl-dev/keystone/'
 
 # Show help message
 help:

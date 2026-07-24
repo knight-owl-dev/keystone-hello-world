@@ -1,7 +1,7 @@
 # Custom Fonts
 
-Bring your own fonts to Keystone by placing `.otf` files in this directory and
-registering them in `fonts-registry.yaml`. Registered fonts work everywhere
+Bring your own fonts to Keystone by placing `.otf` or `.ttf` files in this
+directory and registering them in `fonts-registry.yaml`. Registered fonts work everywhere
 built-in fonts do — as the document font, in `.font` div/span overrides, and
 in shortcuts.
 
@@ -10,7 +10,7 @@ and drop caps — see the manual at <https://keystone.knight-owl.dev/writing/typ
 
 ## Quick Start
 
-1. **Place font files** — copy `.otf` files into this `fonts/` directory
+1. **Place font files** — copy `.otf` or `.ttf` files into this `fonts/` directory
 2. **Register** — add an entry to `fonts-registry.yaml` (see examples below)
 3. **Use** — reference the font key in `pandoc.yaml` or `.font` divs
 
@@ -137,7 +137,7 @@ defaults — absent unless the author provides them inline
 
 Keystone validates font entries at build time:
 
-- **Missing files** — if a declared `.otf` file doesn't exist in `fonts/`,
+- **Missing files** — if a declared font file doesn't exist in `fonts/`,
   the entry is skipped with a warning. Check the build output for
   `WARN: user font` messages.
 - **Key collisions** — if a user font key matches a built-in font name, the
@@ -147,5 +147,5 @@ Keystone validates font entries at build time:
 
 ## File Requirements
 
-- Font files must be OpenType (`.otf`) format
+- Font files must be OpenType or TrueType (`.otf`/`.ttf`)
 - All font files go flat in this `fonts/` directory (no subdirectories)
