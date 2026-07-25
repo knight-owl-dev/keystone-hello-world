@@ -65,7 +65,8 @@ stage. Each package's source is `https://ctan.org/pkg/<name>`.
 - [X11/MIT](https://spdx.org/licenses/X11.html): xetex
 - [SIL Open Font License](https://openfontlicense.org/): amsfonts (AMS math
   symbol fonts)
-- Free (permissive, redistribution allowed): framed, ulem
+- Free (permissive, redistribution allowed): ec (EC font metrics, required by
+  soul), framed, ulem
 
 `lm` and `lm-math` are also installed here for the default and math fonts; they
 are licensed under the GUST Font License and attributed under Fonts › Latin
