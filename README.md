@@ -91,6 +91,11 @@ make help
 └── publish.txt         # List of content files to include in order
 ```
 
+Only `manuscript/`, `assets/`, and `fonts/` are recognized by the
+publishing pipeline. You're free to create additional folders (e.g.
+`drafts/`, `research/`, `notes/`) to organize your project however
+you like — they won't affect the build.
+
 ## A Note of Gratitude
 
 Keystone stands on the shoulders of giants.

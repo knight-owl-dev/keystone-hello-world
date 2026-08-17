@@ -123,23 +123,16 @@ indent-control: disabled
 
 # Note placement (PDF only)
 #
-# Controls where notes land in PDF output. The same Markdown footnote syntax
-# (`[^1]` or `^[...]`) is used either way — only the placement changes. EPUB has
-# no fixed pages, so it always renders notes section-end regardless.
-#
-# Accepted values:
 #   footnotes  — at the bottom of the page where the marker appears
-#   endnotes   — collected under a "Notes" heading at the end of the document
+#   endnotes   — collected under a "Notes" heading at the end
 #
-# The default is target-dependent: book and scrbook collect endnotes; article,
-# report, and their KOMA variants use footnotes. Leave this commented to keep
-# your target's convention; uncomment only to override it — for example, a book
-# that uses a note-style citation style (chicago-notes-bibliography) collects its
-# citation notes as endnotes by default; set footnotes here to keep them at the
-# foot of the page instead.
-# See https://keystone.knight-owl.dev/writing/notes-and-citations/ for the full guide.
+# The same Markdown footnote syntax serves both. Blank keeps your target's
+# convention: book and scrbook collect endnotes; article, report, and their
+# KOMA variants use footnotes. Any other value stops the build.
 #
-# keystone-note-placement: footnotes
+# https://keystone.knight-owl.dev/writing/notes-and-citations/#where-notes-land
+#
+note-placement:
 
 # Running-header marks — author-declared values (PDF only)
 #
@@ -193,11 +186,11 @@ marks:
 # suppresses that variant — at the un-suffixed key it suppresses
 # both parities, at a suffixed key it suppresses just that one.
 #
-# Chapter-start pages — the first page of every chapter and the
-# table of contents — are intentionally bare (no header, no footer,
-# no rule). The chapter heading is the page's only landmark, which
-# is the standard book typography convention. Running content set
-# here resumes from the second page of each section onward.
+# Opening pages carry no running header and no rule — the heading is
+# the page's only landmark, which is the standard book typography
+# convention. Running content set here resumes from the next page; the
+# one line an opening page does carry is footer-text-opening, below,
+# which also lists which pages those are.
 #
 # Accepted values:
 # - blank, ~, null, or disabled — no header text
@@ -237,9 +230,9 @@ marks:
 #   footer-text: "Chapter {chapter} | {page}"
 #
 # To render a literal `{` or `}`, double them: `{{` and `}}`.
-# Unrecognized placeholder names (e.g. typos like `{authr}`) emit a
-# stderr WARNING and pass through as literal text in the PDF — loud
-# about the typo without breaking the build.
+# An unrecognized placeholder name emits a stderr WARNING and passes
+# through as literal text in the PDF — loud about the typo without
+# breaking the build.
 #
 # Substitution happens inside any surrounding inline markup, so
 # `**{chapter}**`, `[{title}]{.smallcaps}`, and
@@ -297,8 +290,7 @@ header-text-verso:
 # Enable it for the rule-under-the-running-head look common in technical
 # and academic typography.
 #
-# The rule never appears on chapter-start pages or the table of contents
-# (those stay bare regardless), matching the running header/footer.
+# The rule never appears on opening pages, matching the running header.
 #
 # Accepted values:
 #   disabled  — no header rule (default)
@@ -308,15 +300,19 @@ header-rule: disabled
 
 # Running footer text (PDF only)
 #
-# Free-form inline content rendered in the footer. Same semantics as
-# header-text — goes to the center slot, suppressed by a center-slot
-# page number, accepts inline markdown plus shortcuts/handlers, and
-# is omitted from chapter-start pages.
+# Free-form inline content rendered in the footer of body pages. Same
+# semantics as header-text — goes to the center slot, suppressed by a
+# center-slot page number, accepts inline markdown plus
+# shortcuts/handlers. Opening pages take footer-text-opening instead.
 #
 # For two-sided documents, use footer-text-recto and footer-text-verso
 # below to render different content per parity. The un-suffixed
 # footer-text here is the fallback when a parity-suffixed key is
 # absent and the same-on-every-page default when neither is set.
+#
+# On a one-sided document the page number defaults to this same slot, so
+# setting both drops the text with a warning. See
+# https://keystone.knight-owl.dev/writing/running-headers/#page-numbers
 #
 # Common pattern (replaces the legacy footer-copyright auto-string):
 #   footer-text: © 2025 Jane Doe. All rights reserved.
@@ -333,7 +329,8 @@ footer-text:
 # distinguish from, but `footer-text-recto` works the same way.
 #
 # Accepts the same inline markdown / handlers / shortcuts as
-# footer-text.
+# footer-text, including its collision with a centered page number —
+# a one-sided document renders this key on every body page.
 #
 footer-text-recto:
 
@@ -348,6 +345,44 @@ footer-text-recto:
 # footer-text.
 #
 footer-text-verso:
+
+# Running footer text on opening pages (PDF only)
+#
+# An opening page is the first page of a chapter — including an
+# unnumbered one, so a preface, a dedication, or an appendix counts —
+# and the first page of the table of contents. It carries no running
+# header and no rule. This key sets the one line it does carry, at the
+# foot; footer-text-opening-column below chooses its column.
+#
+# Blank or absent renders `{page}` — the drop folio an opening page
+# conventionally carries. Set `disabled` for a fully bare opening;
+# there is no per-page control.
+#
+# There are no -recto / -verso variants: one line serves both parities,
+# and it mirrors across a spread only under `outer` or `inner`.
+#
+# Opening pages arrive with chapters, so a manuscript on article or
+# scrartcl normally has none.
+#
+# Accepts the same inline markdown, handlers, shortcuts, and
+# placeholders as footer-text, e.g.:
+#   footer-text-opening: "— {page} —"
+#   footer-text-opening: "[{page}]{.font family=eb-garamond}"
+#
+footer-text-opening:
+
+# Which column the opening-page footer occupies (PDF only)
+#
+#   center   centered at the foot — the drop folio convention
+#   auto     whichever column page-number-position puts the folio in
+#
+# Blank or absent is `center`, and no other value is accepted: an
+# outside-edge opening folio is `auto` over a page-number-position of
+# outer, not `outer` written here.
+#
+# https://keystone.knight-owl.dev/writing/running-headers/#which-column-it-sits-in
+#
+footer-text-opening-column:
 
 # Page number position (PDF only)
 #
@@ -371,12 +406,14 @@ footer-text-verso:
 # with a stderr WARNING. The conflict fires per parity — one parity's
 # text can be suppressed while the other parity's text renders.
 #
-# Chapter-start pages render bare regardless of this setting; the
-# page number resumes from the second page of each section onward.
+# This setting governs body pages. Opening pages carry their own folio
+# through footer-text-opening, above, which takes the column named here
+# only when footer-text-opening-column is `auto`.
 #
-# Default: footer:outer — the book-typography convention (folio on
-# the outside edge of every spread). On single-sided documents this
-# is identical to footer:right because every page is treated as recto.
+# The default follows the shape of the document. Two-sided documents
+# (book and scrbook, or any target flipped with classoption: twoside) put
+# the folio on the outside edge, footer:outer. One-sided documents center
+# it, footer:center, as the underlying classes do themselves.
 #
 # Examples:
 #   page-number-position: footer:outer
