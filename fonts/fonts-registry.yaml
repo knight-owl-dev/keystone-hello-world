@@ -12,6 +12,13 @@
 #                 Uses CSS font-family syntax:
 #                 https://developer.mozilla.org/en-US/docs/Web/CSS/font-family
 #
+# Expected, and warned about when absent:
+#   main.license — The license files the font travels under, named as files in
+#                  this directory. Always a list, even for one; an empty one
+#                  says there is nothing to pass on. Why they have to travel,
+#                  and what can go wrong:
+#                  https://keystone.knight-owl.dev/errors/missing-font-license/
+#
 # Optional fields:
 #   main.bold        — Bold variant filename
 #   main.italic      — Italic variant filename
@@ -28,16 +35,23 @@
 #       bold: MySerif-Bold.otf
 #       italic: MySerif-Italic.otf
 #       bold_italic: MySerif-BoldItalic.otf
+#       license:
+#         - LICENSE.txt
+#         - GPL.txt
 #     css: '"My Serif", "Georgia", serif'
 #     sans: my-sans
 #
 #   my-sans:
 #     main:
 #       file: MySans-Regular.otf
+#       license:
+#         - OFL.txt
 #     css: '"My Sans", "Helvetica Neue", sans-serif'
 #
 # Example — minimal single-weight font:
 #   my-display:
 #     main:
 #       file: MyDisplay-Regular.otf
+#       license:
+#         - LICENSE.txt
 #     css: '"My Display", "Georgia", serif'

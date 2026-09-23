@@ -1,4 +1,4 @@
-# build output (created on demand by publish.sh / import.sh)
+# build output
 /artifacts/
 
 .DS_Store
