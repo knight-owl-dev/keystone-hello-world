@@ -25,10 +25,32 @@ my-serif:
     bold: MySerif-Bold.otf
     italic: MySerif-Italic.otf
     bold_italic: MySerif-BoldItalic.otf
+    license:
+      - LICENSE.txt
+      - GPL.txt
   css: '"My Serif", "Georgia", serif'
 ```
 
-**Required:** `main.file` and `css`. Everything else is optional.
+**Required:** `main.file` and `css` — an entry without either is skipped.
+`main.license` is expected. The rest — `bold`, `italic`, `bold_italic`,
+`sans`, `main.path` — are optional.
+
+### The `license` field
+
+The terms your font travels under, as filenames in this directory:
+
+```yaml
+main:
+  license:
+    - LICENSE.txt
+    - GPL.txt
+```
+
+Always a list, even for a single file. A dual-licensed font names both texts,
+and several fonts may name the same file. Leaving the field out warns;
+`license: []` says there is nothing to pass on.
+Why the texts have to travel, and which formats carry them, is at
+<https://keystone.knight-owl.dev/errors/missing-font-license/>.
 
 ### The `css` field
 
@@ -58,6 +80,8 @@ my-serif:
     bold: MySerif-Bold.otf
     italic: MySerif-Italic.otf
     bold_italic: MySerif-BoldItalic.otf
+    license:
+      - OFL.txt
   css: '"My Serif", "Georgia", serif'
 ```
 
@@ -67,6 +91,8 @@ my-serif:
 my-display:
   main:
     file: MyDisplay-Regular.otf
+    license:
+      - LICENSE.txt
   css: '"My Display", "Georgia", serif'
 ```
 
@@ -79,6 +105,8 @@ my-serif:
     bold: MySerif-Bold.otf
     italic: MySerif-Italic.otf
     bold_italic: MySerif-BoldItalic.otf
+    license:
+      - OFL.txt
   css: '"My Serif", "Georgia", serif'
   sans: my-sans
 
@@ -86,6 +114,8 @@ my-sans:
   main:
     file: MySans-Regular.otf
     bold: MySans-Bold.otf
+    license:
+      - OFL.txt
   css: '"My Sans", "Helvetica Neue", sans-serif'
 ```
 
@@ -144,6 +174,12 @@ Keystone validates font entries at build time:
   built-in wins and a warning is emitted. Choose a different key.
 - **Missing required fields** — entries without `main.file` or `css` are
   skipped with a warning.
+- **Duplicate filenames** — two entries naming the same file stop the build,
+  case ignored. Rename yours, or drop the surplus entry. See
+  <https://keystone.knight-owl.dev/errors/duplicate-font-file/>.
+- **Undeclared terms** — a font that declares no license, or declares one
+  Keystone cannot use, warns. See
+  <https://keystone.knight-owl.dev/errors/missing-font-license/>.
 
 ## File Requirements
 
