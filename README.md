@@ -47,10 +47,13 @@ You can run these commands from your terminal or integrate them into your flow:
 | Target    | Description                                                                      |
 |-----------|----------------------------------------------------------------------------------|
 | `import`  | Imports a document (DOCX, ODT, RTF) from the artifacts folder                    |
-| `publish` | Builds a specific format using [publish.sh](publish.sh)                          |
+| `publish` | Builds one format (default: PDF)                                                 |
 | `all`     | Builds PDF, EPUB and DOCX formats                                                |
-| `clean`   | Prunes images and deletes generated PDFs/EPUBs from [artifacts](/artifacts/)     |
+| `clean`   | Deletes generated files from [artifacts](/artifacts/)                            |
 | `verify`  | Verifies the Docker image signature using cosign                                 |
+| `ps`      | Shows this project's containers                                                  |
+| `down`    | Stops this project's containers                                                  |
+| `reset`   | Stops this project's containers and drops their volumes                          |
 | `help`    | Displays a list of available `Make` targets and usage examples                   |
 
 Example:
@@ -71,7 +74,7 @@ make help
 │   └── docker-compose.yaml
 ├── .keystone/          # Keystone metadata
 │   └── sync.json       # Sync metadata
-├── .licenses/          # License documents (Keystone, Pandoc, Fonts)
+├── .licenses/          # License documents (Keystone, Pandoc)
 ├── artifacts/          # Output folder for built PDFs and EPUBs
 ├── assets/             # Images and cover art
 ├── manuscript/         # All content — chapters, appendices, etc.
