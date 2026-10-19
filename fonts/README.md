@@ -1,12 +1,11 @@
 # Custom Fonts
 
-Bring your own fonts to Keystone by placing `.otf` or `.ttf` files in this
-directory and registering them in `fonts-registry.yaml`. Registered fonts work everywhere
-built-in fonts do — as the document font, in `.font` div/span overrides, and
-in shortcuts.
+Bring your own fonts to Keystone by placing `.otf` or `.ttf` files in this directory and registering them in
+`fonts-registry.yaml`. Registered fonts work everywhere built-in fonts do — as the document font, in `.font` div/span
+overrides, and in shortcuts.
 
-📚 For the full typography guide — built-in families, the `.font` shortcut, sizes,
-and drop caps — see the manual at <https://keystone.knight-owl.dev/writing/typography/>.
+📚 For the full typography guide — built-in families, the `.font` shortcut, sizes, and drop caps — see the manual at
+<https://keystone.knight-owl.dev/writing/typography/>.
 
 ## Quick Start
 
@@ -31,9 +30,8 @@ my-serif:
   css: '"My Serif", "Georgia", serif'
 ```
 
-**Required:** `main.file` and `css` — an entry without either is skipped.
-`main.license` is expected. The rest — `bold`, `italic`, `bold_italic`,
-`sans`, `main.path` — are optional.
+**Required:** `main.file` and `css` — an entry without either is skipped. `main.license` is expected. The rest — `bold`,
+`italic`, `bold_italic`, `sans`, `main.path` — are optional.
 
 ### The `license` field
 
@@ -46,17 +44,14 @@ main:
     - GPL.txt
 ```
 
-Always a list, even for a single file. A dual-licensed font names both texts,
-and several fonts may name the same file. Leaving the field out warns;
-`license: []` says there is nothing to pass on.
-Why the texts have to travel, and which formats carry them, is at
-<https://keystone.knight-owl.dev/errors/missing-font-license/>.
+Always a list, even for a single file. A dual-licensed font names both texts, and several fonts may name the same file.
+Leaving the field out warns; `license: []` says there is nothing to pass on. Why the texts have to travel, and which
+formats carry them, is at <https://keystone.knight-owl.dev/errors/missing-font-license/>.
 
 ### The `css` field
 
-The `css` value is a CSS `font-family` stack. The first quoted name becomes
-the `@font-face` family name in EPUB; subsequent values are fallbacks for
-e-readers that can't load embedded fonts.
+The `css` value is a CSS `font-family` stack. The first quoted name becomes the `@font-face` family name in EPUB;
+subsequent values are fallbacks for e-readers that can't load embedded fonts.
 
 ```yaml
 # Serif with fallbacks
@@ -119,8 +114,7 @@ my-sans:
   css: '"My Sans", "Helvetica Neue", sans-serif'
 ```
 
-When `my-serif` is set as the document font, Keystone also sets the
-sans-serif font to `my-sans` automatically.
+When `my-serif` is set as the document font, Keystone also sets the sans-serif font to `my-sans` automatically.
 
 ## Referencing User Fonts
 
@@ -159,26 +153,21 @@ my-serif-text:
       bind: class.style
 ```
 
-The `family` default pins the typeface. `size` and `style` have no
-defaults — absent unless the author provides them inline
-(`::: {.my-serif-text size="small" style="italic"}`).
+The `family` default pins the typeface. `size` and `style` have no defaults — absent unless the author provides them
+inline (`::: {.my-serif-text size="small" style="italic"}`).
 
 ## Validation
 
 Keystone validates font entries at build time:
 
-- **Missing files** — if a declared font file doesn't exist in `fonts/`,
-  the entry is skipped with a warning. Check the build output for
-  `WARN: user font` messages.
-- **Key collisions** — if a user font key matches a built-in font name, the
-  built-in wins and a warning is emitted. Choose a different key.
-- **Missing required fields** — entries without `main.file` or `css` are
-  skipped with a warning.
-- **Duplicate filenames** — two entries naming the same file stop the build,
-  case ignored. Rename yours, or drop the surplus entry. See
-  <https://keystone.knight-owl.dev/errors/duplicate-font-file/>.
-- **Undeclared terms** — a font that declares no license, or declares one
-  Keystone cannot use, warns. See
+- **Missing files** — if a declared font file doesn't exist in `fonts/`, the entry is skipped with a warning. Check the
+  build output for `WARN: user font` messages.
+- **Key collisions** — if a user font key matches a built-in font name, the built-in wins and a warning is emitted.
+  Choose a different key.
+- **Missing required fields** — entries without `main.file` or `css` are skipped with a warning.
+- **Duplicate filenames** — two entries naming the same file stop the build, case ignored. Rename yours, or drop the
+  surplus entry. See <https://keystone.knight-owl.dev/errors/duplicate-font-file/>.
+- **Undeclared terms** — a font that declares no license, or declares one Keystone cannot use, warns. See
   <https://keystone.knight-owl.dev/errors/missing-font-license/>.
 
 ## File Requirements
