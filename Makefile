@@ -152,7 +152,7 @@ reset:
 # Verify the Keystone Docker image signature
 verify:
 	@docker run --rm ghcr.io/sigstore/cosign/cosign:v3.1.3@sha256:9e5c2f2edc34351160407ca3416c61855bdf9403c3c5936e0f0be7fc261611b8 verify \
-		ghcr.io/knight-owl-dev/keystone:v2.4.0 \
+		ghcr.io/knight-owl-dev/keystone:v2.4.1 \
 		--certificate-oidc-issuer https://token.actions.githubusercontent.com \
 		--certificate-identity-regexp '^https://github\.com/knight-owl-dev/keystone/'
 
